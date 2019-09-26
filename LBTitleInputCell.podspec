@@ -13,3 +13,4 @@ Pod::Spec.new do |spec|
   spec.source_files = "LBTitleInputCell/**/*.{h,m}"
   spec.requires_arc = true
 end
+#--use-libraries
