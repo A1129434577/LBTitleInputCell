@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"LBTableViewCell";
+    self.title = @"LBTitleInputCell";
     _titleArray = @[@[@"姓名"],@[@"身份证"]];
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     tableView.estimatedSectionHeaderHeight = 0;
