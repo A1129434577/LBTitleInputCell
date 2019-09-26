@@ -1,0 +1,16 @@
+PODS:
+  - LBTextField (0.0.2)
+
+DEPENDENCIES:
+  - LBTextField
+
+SPEC REPOS:
+  trunk:
+    - LBTextField
+
+SPEC CHECKSUMS:
+  LBTextField: 4697af30d6c71ca98a610a92faca18054383582d
+
+PODFILE CHECKSUM: ef7a5f8d2e4a2f7effac64f264937f7c6a656091
+
+COCOAPODS: 1.8.0
