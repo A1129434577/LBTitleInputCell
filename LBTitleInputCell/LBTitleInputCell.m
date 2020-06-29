@@ -33,7 +33,7 @@
         _titleLabel.numberOfLines = 0;
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:_titleLabel];
+        [self.contentView addSubview:_titleLabel];
         
         __weak typeof(_titleLabel) weakTitleLabel = _titleLabel;
         NSArray *titleSortedArray = [array sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
@@ -54,15 +54,16 @@
         _inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _inputTextField.textColor = [UIColor blackColor];
         _inputTextField.font = _font;
-        [self addSubview:_inputTextField];
+        [self.contentView addSubview:_inputTextField];
     }
     
     return self;
 }
 
--(void)setFrame:(CGRect)frame{
-    [super setFrame:frame];
-    _titleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinX(_titleLabel.frame), CGRectGetMinY(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinY(_titleLabel.frame), CGRectGetWidth(_titleLabel.frame), CGRectGetHeight(_titleLabel.frame)==MAXFLOAT?CGRectGetHeight(frame):CGRectGetHeight(_titleLabel.frame));
-    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame)==MAXFLOAT?CGRectGetMaxX(_titleLabel.frame)+10:CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame)==MAXFLOAT?0:CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame)==MAXFLOAT?CGRectGetWidth(frame)-(CGRectGetMaxX(_titleLabel.frame)+10):CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(_inputTextField.frame)==MAXFLOAT?CGRectGetHeight(frame):CGRectGetHeight(_inputTextField.frame));
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    _titleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinX(_titleLabel.frame), CGRectGetMinY(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinY(_titleLabel.frame), CGRectGetWidth(_titleLabel.frame), CGRectGetHeight(_titleLabel.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_titleLabel.frame));
+    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame)==MAXFLOAT?CGRectGetMaxX(_titleLabel.frame)+10:CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame)==MAXFLOAT?0:CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame)==MAXFLOAT?CGRectGetWidth(self.contentView.frame)-(CGRectGetMaxX(_titleLabel.frame)+10):CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(_inputTextField.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_inputTextField.frame));
 }
 @end
