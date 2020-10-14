@@ -31,8 +31,6 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = _font;
         _titleLabel.numberOfLines = 0;
-        _titleLabel.textColor = [UIColor blackColor];
-        _titleLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:_titleLabel];
         
         __weak typeof(_titleLabel) weakTitleLabel = _titleLabel;
@@ -52,7 +50,6 @@
         
         _inputTextField = [[LBTextField alloc] initWithFrame:CGRectMake(MAXFLOAT, MAXFLOAT, MAXFLOAT, MAXFLOAT)];
         _inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _inputTextField.textColor = [UIColor blackColor];
         _inputTextField.font = _font;
         [self.contentView addSubview:_inputTextField];
     }
