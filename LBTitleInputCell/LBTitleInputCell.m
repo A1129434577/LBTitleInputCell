@@ -61,6 +61,6 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     _titleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinX(_titleLabel.frame), CGRectGetMinY(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinY(_titleLabel.frame), CGRectGetWidth(_titleLabel.frame), CGRectGetHeight(_titleLabel.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_titleLabel.frame));
-    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame)==MAXFLOAT?CGRectGetMaxX(_titleLabel.frame)+10:CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame)==MAXFLOAT?0:CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame)==MAXFLOAT?CGRectGetWidth(self.contentView.frame)-(CGRectGetMaxX(_titleLabel.frame)+10):CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(_inputTextField.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_inputTextField.frame));
+    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame)==MAXFLOAT?CGRectGetMaxX(_titleLabel.frame)+10:CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame)==MAXFLOAT?0:CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame)==MAXFLOAT?CGRectGetWidth(self.contentView.frame)-(CGRectGetMaxX(_titleLabel.frame)+10)-CGRectGetMinX(_titleLabel.frame):CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(_inputTextField.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_inputTextField.frame));
 }
 @end
