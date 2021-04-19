@@ -13,7 +13,7 @@
 @end
 @implementation LBTitleInputCell
 
--(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier titleArray:(NSArray *)array font:(UIFont *)font{
+-(instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier tableView:(UITableView *)tableView titleArray:(NSArray *)array font:(UIFont *)font{
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
         _font = font?font:[UIFont systemFontOfSize:16];
@@ -46,12 +46,14 @@
         _longestTitleWidth = [_titleLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))].width;
         
         _titleLabel.text = nil;
-        _titleLabel.frame = CGRectMake(MAXFLOAT, MAXFLOAT, _longestTitleWidth, MAXFLOAT);
         
-        _inputTextField = [[LBTextField alloc] initWithFrame:CGRectMake(MAXFLOAT, MAXFLOAT, MAXFLOAT, MAXFLOAT)];
+        _titleLabel.frame = CGRectMake(tableView.layoutMargins.left, CGFLOAT_MIN, _longestTitleWidth, CGFLOAT_MIN);
+        
+        _inputTextField = [[LBTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_titleLabel.frame)+10, CGFLOAT_MIN, CGRectGetWidth(tableView.frame)-(CGRectGetMaxX(_titleLabel.frame)+10)-tableView.layoutMargins.right, CGFLOAT_MIN)];
         _inputTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _inputTextField.font = _font;
         [self.contentView addSubview:_inputTextField];
+        
     }
     
     return self;
@@ -60,7 +62,9 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    _titleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinX(_titleLabel.frame), CGRectGetMinY(_titleLabel.frame)==MAXFLOAT?0:CGRectGetMinY(_titleLabel.frame), CGRectGetWidth(_titleLabel.frame), CGRectGetHeight(_titleLabel.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_titleLabel.frame));
-    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame)==MAXFLOAT?CGRectGetMaxX(_titleLabel.frame)+10:CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame)==MAXFLOAT?0:CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame)==MAXFLOAT?CGRectGetWidth(self.contentView.frame)-(CGRectGetMaxX(_titleLabel.frame)+10)-CGRectGetMinX(_titleLabel.frame):CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(_inputTextField.frame)==MAXFLOAT?CGRectGetHeight(self.contentView.frame):CGRectGetHeight(_inputTextField.frame));
+    
+    _titleLabel.frame = CGRectMake(CGRectGetMinX(_titleLabel.frame), CGRectGetMinY(_titleLabel.frame), CGRectGetWidth(_titleLabel.frame), CGRectGetHeight(self.contentView.frame)-CGRectGetMinY(_titleLabel.frame)*2);
+    _inputTextField.frame = CGRectMake(CGRectGetMinX(_inputTextField.frame), CGRectGetMinY(_inputTextField.frame), CGRectGetWidth(_inputTextField.frame), CGRectGetHeight(self.contentView.frame)-CGRectGetMinY(_inputTextField.frame)*2);
+    
 }
 @end

@@ -22,6 +22,7 @@
     self.title = @"LBTitleInputCell";
     _titleArray = @[@[@"姓名"],@[@"身份证"]];
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    tableView.layoutMargins = UIEdgeInsetsMake(0, 40, 0, 40);
     tableView.estimatedSectionHeaderHeight = 0;
     tableView.estimatedSectionFooterHeight = 0;
     tableView.delegate = self;
@@ -44,8 +45,7 @@
     static NSString *identifier = @"LBTableViewCell";
     LBTitleInputCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[LBTitleInputCell alloc] initWithReuseIdentifier:identifier titleArray:_titleArray font:[UIFont systemFontOfSize:16]];
-        cell.titleLabel.frame = CGRectMake(15, CGRectGetMinX(cell.titleLabel.frame), CGRectGetWidth(cell.titleLabel.frame), CGRectGetHeight(cell.titleLabel.frame));
+        cell = [[LBTitleInputCell alloc] initWithReuseIdentifier:identifier tableView:tableView titleArray:_titleArray font:[UIFont systemFontOfSize:16]];
     }
     cell.titleLabel.text = _titleArray[indexPath.section][indexPath.row];
     cell.inputTextField.placeholder = _titleArray[indexPath.section][indexPath.row];
